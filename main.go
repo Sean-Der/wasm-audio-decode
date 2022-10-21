@@ -29,6 +29,9 @@ var (
 
 	//go:embed 18.ogg
 	ogg18 []byte
+
+	//go:embed business.ogg
+	oggBusiness []byte
 )
 
 func main() {
@@ -48,6 +51,8 @@ func SetFile(file int) bool {
 		selectedFile = oggSpeech
 	} else if file == 2 {
 		selectedFile = ogg18
+	} else if file == 3 {
+		selectedFile = oggBusiness
 	}
 
 	oggReader, _, err = oggreader.NewWith(bytes.NewReader(selectedFile))
