@@ -2,7 +2,7 @@
 
 This page demonstrates using [pion/opus](https://github.com/pion/opus) to decode in WASM. Those decoded buffers are played using the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
 
-The source code for this project is available at [github.com/sean-der/wasm-audio-decode](https://github.com/sean-der/wasm-audio-decode)
+The source code for this project is available at [github.com/sean-der/wasm-audio-decode](https://github.com/sean-der/wasm-audio-decode). A demo is hosted at [sean-der.github.io/wasm-audio-decode/](https://sean-der.github.io/wasm-audio-decode/)
 
 The files are encoded at ~10K and are telephony quality at best.
 
