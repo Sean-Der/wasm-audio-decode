@@ -90,11 +90,10 @@
 
   <script src="wasm_exec.js"> </script>
   <script>
-
-    var audioCtx = new window.AudioContext();
-    let nextTime = 0;
+    const audioCtx = new window.AudioContext()
+    let nextTime = 0
     let wasm, memoryOffset
-    let decodeBuffer = () => {
+    const decodeBuffer = () => {
       return new Uint8Array(wasm.exports.memory.buffer)
     }
     window.playAudio = fileIndex => {
@@ -108,40 +107,40 @@
 
       for (;;) {
         // decode returns size of float, but we are copying bytes
-        let decodeSize = wasm.exports.decode() * 4
-        if (decodeSize == 0) {
-          return;
+        const decodeSize = wasm.exports.decode() * 4
+        if (decodeSize === 0) {
+          return
         }
 
-        const decodedAudio = wasmMemoryToFloat32(decodeSize);
-        const audioBuffer = audioCtx.createBuffer(1, 960, 48000);
+        const decodedAudio = wasmMemoryToFloat32(decodeSize)
+        const audioBuffer = audioCtx.createBuffer(1, 960, 48000)
         audioBuffer.copyToChannel(decodedAudio, 0)
 
-        var source    = audioCtx.createBufferSource();
-        source.buffer = audioBuffer;
-        source.connect(audioCtx.destination);
-        if (nextTime == 0) {
-          nextTime = audioCtx.currentTime;
+        const source = audioCtx.createBufferSource()
+        source.buffer = audioBuffer
+        source.connect(audioCtx.destination)
+        if (nextTime === 0) {
+          nextTime = audioCtx.currentTime
         }
-        source.start(nextTime);
-        nextTime += source.buffer.duration;
+        source.start(nextTime)
+        nextTime += source.buffer.duration
       }
     }
 
-    function wasmMemoryToFloat32(decodeSize) {
-      let out = new Float32Array(decodeSize / 4)
-      let byteBuffer = decodeBuffer().subarray(memoryOffset, memoryOffset + decodeSize)
+    function wasmMemoryToFloat32 (decodeSize) {
+      const out = new Float32Array(decodeSize / 4)
+      const byteBuffer = decodeBuffer().subarray(memoryOffset, memoryOffset + decodeSize)
 
-      let buf = new ArrayBuffer(4)
-      let view = new DataView(buf)
+      const buf = new ArrayBuffer(4)
+      const view = new DataView(buf)
       for (let i = 0; i < decodeSize; i += 4) {
-        for (j = 0; j < 4; j++) {
-          view.setUint8(3 - j, byteBuffer[i + j]);
+        for (let j = 0; j < 4; j++) {
+          view.setUint8(3 - j, byteBuffer[i + j])
         }
-        out[i / 4] = view.getFloat32(0);
+        out[i / 4] = view.getFloat32(0)
       }
 
-      return out;
+      return out
     }
 
     const go = new Go()
