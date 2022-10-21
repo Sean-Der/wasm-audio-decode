@@ -1,0 +1,4 @@
+github.com/pion/opus v0.0.0-20221018224646-c7f27951aaeb h1:fow+Tqzwa1G2E9nwARtzDj7DtLR8XxiEhqsokAR4yJU=
+github.com/pion/opus v0.0.0-20221018224646-c7f27951aaeb/go.mod h1:m8ODxkLrcNvLY6BPvOj7yLxK1wMQWA+2jqKcsrZ293U=
+github.com/pion/opus v0.0.0-20221020194029-170bfcf1516b h1:gZDO4lBfm6UdnaNRxiTn1YIZDBR2YwrJNxATuwstV9I=
+github.com/pion/opus v0.0.0-20221020194029-170bfcf1516b/go.mod h1:m8ODxkLrcNvLY6BPvOj7yLxK1wMQWA+2jqKcsrZ293U=
